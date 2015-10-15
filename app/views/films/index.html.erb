@@ -1,11 +1,19 @@
 <h1>Films</h1>
 
-<ul>
-  <% @films.each do |film| %>
-     <li><%= link_to '^', film_path(film, :vote => "up"), :method => "patch" %> | <%= link_to film.title, film_path(film) %></li>
-     <% end %>
-</ul>
+<div class="center">
+  <div class="row">
+      <ul>
+        <% @films.each do |film| %>
+         <div class="col-md-4 col-md-4 col-md-4">
+           <div class="thumbnail" >
+           <li><%= link_to image_tag("#{film.url}"), film_path(film) %><br> <%= link_to '^', film_path(film, :vote => "up"), :method => "patch" %> [ <%= film.votes %> stars ] <%= link_to film.title, film_path(film) %> </li>
+         </div>
+     </div>
+           <% end %>
+      </ul>
 
+ </div>
+</div>
 <hr>
 
 <%= link_to "New Film", new_film_path %>

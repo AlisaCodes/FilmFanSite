@@ -1,13 +1,14 @@
 <h1><%= @film.title %></h1>
-<h5> Votes: <%= @film.votes %> </h5>
+<h4>directed by <%= @film.director %></h4>
+<h5> Star Votes: <%= @film.votes %> </h5>
 
 <% if @film.comments.any? %>
-  <h4>Comments:</h4>
+  <h4>Film Reviews:</h4>
 
   <ul>
     <% @film.comments.each do |comment| %>
     <li>
-      <%= comment.name %>
+      <%= comment.name %> thinks: <%= comment.post %>
       <%= link_to "Edit", edit_film_comment_path(@film, comment) %>
       <%= link_to "Delete", film_comment_path(@film, comment),
                             :date => {:confirm => "Sure, sure?",
@@ -19,11 +20,11 @@
     <p>No comments to report.</p>
 <% end %>
 
-<p><%= link_to "Home", films_path %></p>
 
-<p><%= link_to "Edit", edit_film_path(@film) %></p>
-<p><%= link_to "Delete", film_path(@film),
+
+<p><%= link_to "Edit", edit_film_path(@film) %>
+   <%= link_to "Delete", film_path(@film),
                          :data => {:confirm => "Sure?",
-                                   :method => "delete"} %></p>
+                                   :method => "delete"} %>
 
-<p><%= link_to "Add a Comment", new_film_comment_path(@film) %></p>
+   <%= link_to "Add a Comment", new_film_comment_path(@film) %></p>
