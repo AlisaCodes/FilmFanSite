@@ -27,10 +27,17 @@ class FilmsController < ApplicationController
 
   def update
     @film = Film.find(params[:id])
-    if @film.update(film_params)
+
+    if params[:vote] == 'up'
+      @film.votes += 1
+      @film.save
       redirect_to films_path
     else
-      render :edit
+      if @film.update(film_params)
+        redirect_to films_path
+      else
+        render :edit
+      end
     end
   end
 
@@ -42,6 +49,6 @@ class FilmsController < ApplicationController
 
   private
   def film_params
-    params.require(:film).permit(:title, :url, :description, :director)
+    params.require(:film).permit(:title, :url, :description, :director, :votes)
   end
 end

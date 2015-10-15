@@ -2,7 +2,7 @@
 
 <ul>
   <% @films.each do |film| %>
-     <li><%= link_to film.title, film_path(film) %></li>
+     <li><%= link_to '^', film_path(film, :vote => "up"), :method => "patch" %> | <%= link_to film.title, film_path(film) %></li>
      <% end %>
 </ul>
 
