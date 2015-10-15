@@ -1,0 +1,9 @@
+<%= render('layouts/errors', :object => @comment) %>
+
+<%= form_for [@film, @comment] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :post %>
+  <%= f.text_field :post %>
+  <p><%= f.submit %></p>
+<% end %>

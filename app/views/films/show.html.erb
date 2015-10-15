@@ -1,0 +1,28 @@
+<h1><%= @film.title %></h1>
+
+<% if @film.comments.any? %>
+  <h4>Comments:</h4>
+
+  <ul>
+    <% @film.comments.each do |comment| %>
+    <li>
+      <%= comment.name %>
+      <%= link_to "Edit", edit_film_comment_path(@film, comment) %>
+      <%= link_to "Delete", film_comment_path(@film, comment),
+                            :date => {:confirm => "Sure, sure?",
+                                      :method => "delete"} %>
+    </li>
+   <% end %>
+  </ul>
+  <% else %>
+    <p>No comments to report.</p>
+<% end %>
+
+<p><%= link_to "Home", films_path %></p>
+
+<p><%= link_to "Edit", edit_film_path(@film) %></p>
+<p><%= link_to "Delete", film_path(@film),
+                         :data => {:confirm => "Sure?",
+                                   :method => "delete"} %></p>
+
+<p><%= link_to "Add a Comment", new_film_comment_path(@film) %></p>
